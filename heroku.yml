@@ -6,9 +6,10 @@
 build:
   docker:
     web: Payment/Dockerfile
-  config:
-    ASPNETCORE_ENVIRONMENT: $ASPNETCORE_ENVIRONMENT
-    DATABASE_URL: $DATABASE_URL
+      env_variables:
+        ASPNETCORE_ENVIRONMENT: Production
+        DATABASE_URL: $DATABASE_URL
+    
       # environment:
       #   ASPNETCORE_ENVIRONMENT: $ASPNETCORE_ENVIRONMENT
       #   DATABASE_URL: $DATABASE_URL
