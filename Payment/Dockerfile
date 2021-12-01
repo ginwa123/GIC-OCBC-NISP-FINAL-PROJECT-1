@@ -13,7 +13,7 @@ COPY . .
 WORKDIR "/src/."
 ENV ASPNETCORE_ENVIRONMENT=Production
 ENV PATH="${PATH}:/root/.dotnet/tools"
-ENV DATABASE_URL="${DATABASE_URL}"
+ENV DATABASE_URL=$DATABASE_URL
 RUN dotnet build "Payment.csproj" -c Release -o /app/build
 
 FROM build AS publish
