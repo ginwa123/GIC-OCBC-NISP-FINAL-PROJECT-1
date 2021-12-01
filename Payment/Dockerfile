@@ -20,7 +20,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-ENV ASPNETCORE_Environment=Production
+ENV ASPNETCORE_ENVIRONMENT=Production
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 
