@@ -27,6 +27,12 @@ namespace Payment.Data
             var pgPort = Environment.GetEnvironmentVariable("POSTGRES_PORT");
             var pgDatabase = Environment.GetEnvironmentVariable("POSTGRES_DATABASE");
 
+            // hardcoded ? cara biar dapet environmentvariable dari heroku bagaimana ???
+            if (pgUserId == null) pgUserId = "xczrclkqhpjdvq";
+            if (pgPassword == null) pgPassword = "a3bd88fcdc51dbd926ae76e80f98d77331cfe23fb8563b0b2c579d890d76d37c";
+            if (pgHost == null) pgHost = "ec2-54-146-116-84.compute-1.amazonaws.com";
+            if (pgPort == null) pgPort = "5432";
+            if (pgDatabase == null) pgDatabase = "d4b1reod9a97fh";
             var connStr = $"Server={pgHost};Port={pgPort};User Id={pgUserId};Password={pgPassword};Database={pgDatabase};sslmode=Prefer;Trust Server Certificate=true;";
 
 
