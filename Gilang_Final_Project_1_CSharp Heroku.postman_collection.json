@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "a06238ed-2be2-43ce-aa27-b8b7b0056ff9",
+		"name": "Gilang_Final_Project_1_CSharp Heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"ginwa123\",\r\n    \"email\": \"ginwa123gmail.com\",\r\n    \"password\": \"Gilang12345!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://final-project-csharp.herokuapp.com/api/auth/register",
+					"protocol": "https",
+					"host": [
+						"final-project-csharp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login account",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ginwa123gmail.com\",\r\n    \"password\": \"Gilang12345!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://final-project-csharp.herokuapp.com/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"final-project-csharp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RefreshToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\" : \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImE2MTY0ZGZhLTMxMTUtNGQwYy1iMGNjLWNiOGU4NmRhYTE5MiIsImVtYWlsIjoiZ2lud2ExMjNnbWFpbC5jb20iLCJzdWIiOiJnaW53YTEyM2dtYWlsLmNvbSIsImp0aSI6IjhlNWY1Nzk1LTE1NzYtNDE3Yi1iNTQ0LTk5YjBhMzVhNzE1NCIsIm5iZiI6MTYzODI4NzIwOCwiZXhwIjoxNjM4Mjg3MzI4LCJpYXQiOjE2MzgyODcyMDh9.JC_sY773bSz9JsuilkgDE5qT6g1avMI5699CzDc60ig\",\r\n    \"refreshtoken\": \"KV5MZC7P9D0e8d9e11-02cf-44d2-9e77-866088c208a0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://final-project-csharp.herokuapp.com/api/auth/refreshtoken",
+					"protocol": "https",
+					"host": [
+						"final-project-csharp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"auth",
+						"refreshtoken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All payment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://final-project-csharp.herokuapp.com/api/paymentdetail",
+					"protocol": "https",
+					"host": [
+						"final-project-csharp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"paymentdetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://final-project-csharp.herokuapp.com/api/paymentdetail/1",
+					"protocol": "https",
+					"host": [
+						"final-project-csharp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"paymentdetail",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cardOwnerName\": \"Maeda\",\r\n  \"cardNumber\": 23223,\r\n  \"expirationDate\": \"2021-11-30T13:36:02.881Z\",\r\n  \"securityCode\": \"sdasdl12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://final-project-csharp.herokuapp.com/api/paymentdetail",
+					"protocol": "https",
+					"host": [
+						"final-project-csharp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"paymentdetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cardOwnerName\": \"edited\",\r\n  \"cardNumber\": 213213,\r\n  \"expirationDate\": \"2021-11-30T13:36:02.881Z\",\r\n  \"securityCode\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://final-project-csharp.herokuapp.com/api/paymentdetail/1",
+					"protocol": "https",
+					"host": [
+						"final-project-csharp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"paymentdetail",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://final-project-csharp.herokuapp.com/api/paymentdetail/2",
+					"protocol": "https",
+					"host": [
+						"final-project-csharp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"paymentdetail",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImU3ZTgxOWQzLTYwOWYtNDFiMC1hNjA2LTA3ZmE3Y2RmZTIyMiIsImVtYWlsIjoiZ2lud2ExMjNnbWFpbC5jb20iLCJzdWIiOiJnaW53YTEyM2dtYWlsLmNvbSIsImp0aSI6IjQ4YzJmOTA0LTFhOTktNGIyYy1hNzYyLTYxMzdmOWVkOTEzMSIsIm5iZiI6MTYzODMyODM4OCwiZXhwIjoxNjM4MzI4NTA4LCJpYXQiOjE2MzgzMjgzODh9.sga2u7RMQbvLgxbUK4CDHMh779MBpCZJWGm6OOTiUmA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImE2MTY0ZGZhLTMxMTUtNGQwYy1iMGNjLWNiOGU4NmRhYTE5MiIsImVtYWlsIjoiZ2lud2ExMjNnbWFpbC5jb20iLCJzdWIiOiJnaW53YTEyM2dtYWlsLmNvbSIsImp0aSI6ImE5ZTBkM2IyLWM4YWQtNDNiYy1hYjE5LWMzNmM3ZGU4ZGQ5NSIsIm5iZiI6MTYzODI4NTQ2MSwiZXhwIjoxNjM4Mjg1NTgxLCJpYXQiOjE2MzgyODU0NjF9.9Ga1bgOUFX6prmVEfKVRx4A1B29q-ZtMXwASLnffUB8"
+		}
+	]
+}
