@@ -1,7 +1,7 @@
 # Final Project CSharp API Heroku
 **Nama : Gilang Trisetya Indrawan** \
 **Kode Peserta : FSDO002ONL018** \
-Link laporan: todo \
+Link laporan: [laporanku](laporan.pdf) \
 Link Github: https://github.com/ginwa123/GIC-OCBC-NISP-FINAL-PROJECT-1 \
 Link Heroku: https://final-project-csharp.herokuapp.com \
 Postman  [postman collection](Gilang_Final_Project_1_CSharp%20Heroku.postman_collection.json)
