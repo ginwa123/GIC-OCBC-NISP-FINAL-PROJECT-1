@@ -11,9 +11,13 @@ COPY ["Payment.csproj", "."]
 RUN dotnet restore "./Payment.csproj"
 COPY . .
 WORKDIR "/src/."
-ENV ASPNETCORE_ENVIRONMENT=Production
+#ENV ASPNETCORE_ENVIRONMENT=Production
 ENV PATH="${PATH}:/root/.dotnet/tools"
-CMD DATABASE_URL= $DATABASE_URL
+#ENV DATABASE_URL "$DATABASE_URL"
+ARG ASPNETCORE_ENVIRONMENT 
+ARG DATABASE_URL                     
+ENV DATABASE_URL = $DATABASE_URL 
+ENV ASPNETCORE_ENVIRONMENT  = $ASPNETCORE_ENVIRONMENT 
 RUN dotnet build "Payment.csproj" -c Release -o /app/build
 
 FROM build AS publish
