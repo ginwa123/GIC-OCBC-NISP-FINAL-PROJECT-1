@@ -6,6 +6,4 @@
 build:
   docker:
     web: Payment/Dockerfile
-  args:
-    - ASPNETCORE_ENVIRONMENT: $ASPNETCORE_ENVIRONMENT
-    - DATABASE_URL: $DATABASE_URL
+
