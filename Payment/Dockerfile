@@ -11,6 +11,8 @@ COPY ["Payment.csproj", "."]
 RUN dotnet restore "./Payment.csproj"
 COPY . .
 WORKDIR "/src/."
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENV PATH="${PATH}:/root/.dotnet/tools"
 RUN dotnet build "Payment.csproj" -c Release -o /app/build
 
 FROM build AS publish
@@ -20,8 +22,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-ENV ASPNETCORE_ENVIRONMENT=Production
-ENV PATH="${PATH}:/root/.dotnet/tools"
 
 
 #ENTRYPOINT ["dotnet", "Payment.dll"]
