@@ -22,14 +22,20 @@ namespace Payment.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connStr;
-            var pgUserId = Environment.GetEnvironmentVariable("POSTGRES_ID") ?? "localhost";
-            var pgPassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD") ?? "postgres";
-            var pgHost = Environment.GetEnvironmentVariable("POSTGRES_HOST") ?? "admin";
-            var pgPort = Environment.GetEnvironmentVariable("POSTGRES_PORT") ?? "5432";
-            var pgDatabase = Environment.GetEnvironmentVariable("POSTGRES_DATABASE") ?? "018_gilang_final_project_csharp";
 
-            connStr = $"Server={pgHost};Port={pgPort};User Id={pgUserId};Password={pgPassword};Database={pgDatabase};sslmode=Prefer;Trust Server Certificate=true;";
-            if (!IsDevelopment) connStr = GetHerokuConnectionString();
+            if (IsDevelopment)
+            {
+                var pgUserId = Environment.GetEnvironmentVariable("POSTGRES_ID");
+                var pgPassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+                var pgHost = Environment.GetEnvironmentVariable("POSTGRES_HOST");
+                var pgPort = Environment.GetEnvironmentVariable("POSTGRES_PORT");
+                var pgDatabase = Environment.GetEnvironmentVariable("POSTGRES_DATABASE");
+                if (pgHost == null) connStr = Configuration.GetConnectionString("DefaultConnection");
+                else connStr = $"Server={pgHost};Port={pgPort};User Id={pgUserId};Password={pgPassword};Database={pgDatabase};sslmode=Prefer;Trust Server Certificate=true;";
+                
+            }
+            else connStr = GetHerokuConnectionString();
+
 
 
 
