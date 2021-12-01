@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:12577",
+      "sslPort": 44317
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "POSTGRES_HOST": "localhost",
+        "POSTGRES_ID": "postgres",
+        "POSTGRES_PASSWORD": "admin",
+        "POSTGRES_DATABASE": "018_gilang_final_project_csharp",
+        "POSTGRES_PORT": "5432"
+      }
+    },
+    "Payment": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "POSTGRES_HOST": "localhost",
+        "POSTGRES_ID": "postgres",
+        "POSTGRES_PASSWORD": "admin",
+        "POSTGRES_DATABASE": "018_gilang_final_project_csharp",
+        "POSTGRES_PORT": "5432"
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "dotnetRunMessages": "true"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "useSSL": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "POSTGRES_HOST": "ec2-54-146-116-84.compute-1.amazonaws.com",
+        "POSTGRES_ID": "xczrclkqhpjdvq",
+        "POSTGRES_PASSWORD": "a3bd88fcdc51dbd926ae76e80f98d77331cfe23fb8563b0b2c579d890d76d37c",
+        "POSTGRES_DATABASE": "d4b1reod9a97fh",
+        "POSTGRES_PORT": "5432"
+      }
+    }
+  }
+}

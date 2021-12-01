@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "9bb05552-839d-45ea-8ddc-9009d56d4c26": {
+      "ProjectGuid": "9bb05552-839d-45ea-8ddc-9009d56d4c26",
+      "DisplayName": "Payment",
+      "ColorIndex": 0
+    },
+    "2cd6665f-c51d-4b98-970b-531dd4714e8f": {
+      "ProjectGuid": "2cd6665f-c51d-4b98-970b-531dd4714e8f",
+      "DisplayName": "UnitTest",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}
