@@ -1,15 +1,17 @@
 # Final Project CSharp API Heroku
-
+**Nama : Gilang Trisetya Indrawan** \
+**Kode Peserta : FSDO002ONL018** \
+Link laporan: todo \
 Link Github: https://github.com/ginwa123/GIC-OCBC-NISP-FINAL-PROJECT-1 \
 Link Heroku: https://final-project-csharp.herokuapp.com \
-Postman Collection: https://www.getpostman.com/collections/3384626b8d9da017b4fe
-## API Yang dimiliki
----
+Postman  [postman collection](Gilang_Final_Project_1_CSharp%20Heroku.postman_collection.json)
+# API Yang dimiliki
+## Auth Controller
+Menggunakan JWT token sebagai sistem keamanan
+### Register akun
 
-### Auth
-JWT TOKEN berlaku 2 menit \
-Create account : https://final-project-csharp.herokuapp.com/api/auth/register \
-Sample payload
+link : https://final-project-csharp.herokuapp.com/api/auth/register \
+Input body json
 ```json
 {
     "username": "ginwa123",
@@ -18,32 +20,84 @@ Sample payload
 }
 ```
 
- Login account : https://final-project-csharp.herokuapp.com/api/auth/login \
-Sample payload
+---
+### Login akun
+ link : https://final-project-csharp.herokuapp.com/api/auth/login \
+Input body json
 ```json
 {
     "email": "ginwa123gmail.com",
     "password": "Gilang12345!"
 }
 ```
-
-3.RefreshToken : https://final-project-csharp.herokuapp.com/api/auth/refreshtoken \
-Sample payload
+---
+### Refresh Token
+link : https://final-project-csharp.herokuapp.com/api/auth/refreshtoken \
+Input body json
 ```json
 {
-    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImE2MTY0ZGZhLTMxMTUtNGQwYy1iMGNjLWNiOGU4NmRhYTE5MiIsImVtYWlsIjoiZ2lud2ExMjNnbWFpbC5jb20iLCJzdWIiOiJnaW53YTEyM2dtYWlsLmNvbSIsImp0aSI6IjhlNWY1Nzk1LTE1NzYtNDE3Yi1iNTQ0LTk5YjBhMzVhNzE1NCIsIm5iZiI6MTYzODI4NzIwOCwiZXhwIjoxNjM4Mjg3MzI4LCJpYXQiOjE2MzgyODcyMDh9.JC_sY773bSz9JsuilkgDE5qT6g1avMI5699CzDc60ig",
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImE2MTY0ZGZhLTMxMTUtNGQwYy",
     "refreshtoken": "KV5MZC7P9D0e8d9e11-02cf-44d2-9e77-866088c208a0"
 }
 ```
 
-### Payment
 ---
-Get all payment : https://final-project-csharp.herokuapp.com/api/paymentdetail
+## Payment Controller
+### Get All payment
+link : https://final-project-csharp.herokuapp.com/api/paymentdetail \
+Response berhasil
+```json
+{
+    "message": "Get all paayment",
+    "success": true,
+    "data": [
+        {
+            "paymentDetailId": 5,
+            "cardOwnerName": "Gilang Trisetya Indrawan",
+            "cardNumber": 231231231,
+            "expirationDate": "2021-11-30T13:36:02.881",
+            "securityCode": "ksjn23snsda"
+        },
+        {
+            "paymentDetailId": 6,
+            "cardOwnerName": "Mahendra",
+            "cardNumber": 23231223,
+            "expirationDate": "2021-11-30T13:36:02.881",
+            "securityCode": "ksjsadafgda"
+        },
+        {
+            "paymentDetailId": 7,
+            "cardOwnerName": "Bagus",
+            "cardNumber": 2308654,
+            "expirationDate": "2021-11-30T13:36:02.881",
+            "securityCode": "lskfsaja"
+        }
+    ]
+}
+```
+---
+### Get Payment By id
+link : https://final-project-csharp.herokuapp.com/api/paymentdetail/id \
+slug : id \
+Response berhasil menemukan
+```json
+{
+    "message": "payment found",
+    "success": true,
+    "data": {
+        "paymentDetailId": 4,
+        "cardOwnerName": "Gilang Trisetya Indrawan",
+        "cardNumber": 231231231,
+        "expirationDate": "2021-11-30T13:36:02.881",
+        "securityCode": "ksjn23snsda"
+    }
+}
 
-Get payment by id : https://final-project-csharp.herokuapp.com/api/paymentdetail/1
-
-Create Payment : https://final-project-csharp.herokuapp.com/api/paymentdetail \
-Sample payload
+```
+---
+### Create payment
+link : https://final-project-csharp.herokuapp.com/api/paymentdetail \
+Input body json
 ```json
 {
   "cardOwnerName": "Maeda",
@@ -52,15 +106,28 @@ Sample payload
   "securityCode": "sdasdl12"
 }
 ```
-
-Update Payment : https://final-project-csharp.herokuapp.com/api/paymentdetail/1 \
-Sample payload
+---
+### Update Payment
+link : https://final-project-csharp.herokuapp.com/api/paymentdetail/id \
+slug : id \
+Input body json
 ```json
 {
-  "cardOwnerName": "edited",
-  "cardNumber": 213213,
+  "cardOwnerName": "Mahendra",
+  "cardNumber": 213213292642,
   "expirationDate": "2021-11-30T13:36:02.881Z",
   "securityCode": "string"
 }
 ```
-Delete Payment : https://final-project-csharp.herokuapp.com/api/paymentdetail/1
+---
+### Delete Payment
+link : https://final-project-csharp.herokuapp.com/api/paymentdetail/id \
+slug : id
+Response berhasil menghapus
+```json
+{
+    "message": "Delete payment success",
+    "success": true,
+    "data": null
+}
+```
