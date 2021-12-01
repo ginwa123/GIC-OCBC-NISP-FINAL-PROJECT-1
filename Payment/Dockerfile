@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
-ENV ASPNETCORE_Environment=Production
+
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Payment.csproj", "."]
@@ -20,6 +20,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
+ENV ASPNETCORE_Environment=Production
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 
