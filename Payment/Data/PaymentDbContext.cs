@@ -17,27 +17,39 @@ namespace Payment.Data
             Configuration = configuration;
 
         }
-
+        private static bool IsDevelopment => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
         // postgresql connection 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            string connStr;
             var pgUserId = Environment.GetEnvironmentVariable("POSTGRES_ID");
             var pgPassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
             var pgHost = Environment.GetEnvironmentVariable("POSTGRES_HOST");
             var pgPort = Environment.GetEnvironmentVariable("POSTGRES_PORT");
             var pgDatabase = Environment.GetEnvironmentVariable("POSTGRES_DATABASE");
 
-            // hardcoded ? cara biar dapet environmentvariable dari heroku bagaimana ???
-            if (pgUserId == null) pgUserId = "xczrclkqhpjdvq";
-            if (pgPassword == null) pgPassword = "a3bd88fcdc51dbd926ae76e80f98d77331cfe23fb8563b0b2c579d890d76d37c";
-            if (pgHost == null) pgHost = "ec2-54-146-116-84.compute-1.amazonaws.com";
-            if (pgPort == null) pgPort = "5432";
-            if (pgDatabase == null) pgDatabase = "d4b1reod9a97fh";
-            var connStr = $"Server={pgHost};Port={pgPort};User Id={pgUserId};Password={pgPassword};Database={pgDatabase};sslmode=Prefer;Trust Server Certificate=true;";
+            connStr = $"Server={pgHost};Port={pgPort};User Id={pgUserId};Password={pgPassword};Database={pgDatabase};sslmode=Prefer;Trust Server Certificate=true;";
+            if (!IsDevelopment) connStr = GetHerokuConnectionString();
+
+
 
 
             optionsBuilder.UseNpgsql(connStr);
 
+        }
+
+        private string GetHerokuConnectionString()
+        {
+            // Get the connection string from the ENV variables
+            string connectionUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+            // parse the connection string
+            var databaseUri = new Uri(connectionUrl);
+
+            string db = databaseUri.LocalPath.TrimStart('/');
+            string[] userInfo = databaseUri.UserInfo.Split(':', StringSplitOptions.RemoveEmptyEntries);
+
+            return $"User ID={userInfo[0]};Password={userInfo[1]};Host={databaseUri.Host};Port={databaseUri.Port};Database={db};Pooling=true;SSL Mode=Require;Trust Server Certificate=True;";
         }
 
 
