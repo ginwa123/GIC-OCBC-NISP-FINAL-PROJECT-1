@@ -50,8 +50,13 @@ namespace Payment.Controllers
                 var isCreated = await authService.UserManager().CreateAsync(newUser, user.Password);
                 if (isCreated.Succeeded)
                 {
-                    var jwToken = await authService.GenerateJwToken(newUser);
-                    return Ok(jwToken);
+                    //var jwToken = await authService.GenerateJwToken(newUser);
+                    //return Ok(jwToken);
+                    return Ok(new
+                    {
+                        Message = "Account created, now you can login",
+                        Success = true
+                    });
                 }
                 return BadRequest(
                     new
