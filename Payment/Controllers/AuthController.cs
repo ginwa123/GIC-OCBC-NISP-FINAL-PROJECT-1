@@ -136,6 +136,10 @@ namespace Payment.Controllers
                             Success = false
                         });
                 }
+                if (!result.Success)
+                {
+                    return Unauthorized(result);
+                }
                 return Ok(result);
             }
 
