@@ -138,6 +138,18 @@ namespace Payment.Controllers
                 }
                 if (!result.Success)
                 {
+                    if (result.Message == "RefreshToken has been used")
+                    {
+                        return BadRequest(result);
+                    }
+                    else if (result.Message == "Token has been revoked")
+                    {
+                        return BadRequest(result);
+                    }
+                    else if (result.Message == "JWT Token is not expired")
+                    {
+                        return BadRequest(result);
+                    }
                     return Unauthorized(result);
                 }
                 return Ok(result);
