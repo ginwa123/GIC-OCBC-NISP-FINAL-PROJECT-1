@@ -11,6 +11,8 @@ namespace Payment.Services.Auth
 
         public Task<AuthResponse> RefreshJwtToken(TokenRequest token);
 
+        public Task<AuthResponse> CheckJwtToken(TokenRequest tokenRequest);
+
         public UserManager<IdentityUser> UserManager();
 
 

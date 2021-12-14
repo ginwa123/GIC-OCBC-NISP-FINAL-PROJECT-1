@@ -53,7 +53,7 @@ namespace Payment.Services.Auth
                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
-                Expires = DateTime.UtcNow.AddSeconds(2),
+                Expires = DateTime.UtcNow.AddSeconds(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
 
             };
@@ -94,6 +94,56 @@ namespace Payment.Services.Auth
             await paymentDbContext.SaveChangesAsync();
         }
 
+        public async Task<AuthResponse> CheckJwtToken(TokenRequest tokenRequest)
+        {
+            var jwtTokenHandler = new JwtSecurityTokenHandler();
+            try
+            {
+                var tokenInverification = jwtTokenHandler.ValidateToken(tokenRequest.Token, tokenValidationParams, out var validatedToken);
+
+
+                if (validatedToken is JwtSecurityToken jwtSecurityToken)
+                {
+                    var result = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
+                    if (result == false) return null;
+                }
+
+                var utcExpiryDate = long.Parse(tokenInverification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
+                var expiryDate = UnixTimeStampToDateTime(utcExpiryDate);
+                // 
+                if (expiryDate > DateTime.UtcNow)
+                {
+                    return new AuthResponse()
+                    {
+                        Success = true,
+                        Message = "JWT Token is not expired"
+                    };
+                }
+                return new AuthResponse()
+                {
+                    Success = false,
+                    Message = "Something wrong"
+                };
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("Lifetime validation failed. The token is expired"))
+                {
+                    return new AuthResponse()
+                    {
+                        Success = true,
+                        Message = "JWT Token is expired"
+                    };
+                }
+                return new AuthResponse()
+                {
+                    Success = false,
+                    Message = "Something wrong"
+                };
+            }
+        }
+
+
         public async Task<AuthResponse> RefreshJwtToken(TokenRequest tokenRequest)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
@@ -118,7 +168,7 @@ namespace Payment.Services.Auth
                 {
                     return new AuthResponse()
                     {
-                        Success = false,
+                        Success = true,
                         Message = "JWT Token is not expired"
                     };
                 }

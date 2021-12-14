@@ -121,6 +121,25 @@ namespace Payment.Controllers
         }
 
         [HttpPost]
+        [Route("CheckToken")]
+        public async Task<IActionResult> CheckToken([FromBody] TokenRequest tokenRequest)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await authService.CheckJwtToken(tokenRequest);
+
+                return Ok(result);
+
+            }
+            return BadRequest(
+           new BasicResponse()
+           {
+               Message = "invalid payload",
+               Success = false
+           });
+        }
+
+        [HttpPost]
         [Route("RefreshToken")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenRequest tokenRequest)
         {
@@ -150,7 +169,7 @@ namespace Payment.Controllers
                     {
                         return BadRequest(result);
                     }
-                    return Unauthorized(result);
+                    //return Unauthorized(result);
                 }
                 return Ok(result);
             }
